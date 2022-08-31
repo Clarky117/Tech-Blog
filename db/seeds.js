@@ -9,6 +9,14 @@ const Comment = require("../models/Comment");
 async function seedUsers(number = 12) {
     // store users as an array
     const createdUsers = [];
+    // create dummy user
+    const admin = await User.create({
+        email: 'dc@test.com',
+        name: 'dan',
+        password: 'testpassword'
+    })
+    // push to array
+    createdUsers.push(admin);
     // seed user
     for (let index = 0; index < number; index++) {
 
