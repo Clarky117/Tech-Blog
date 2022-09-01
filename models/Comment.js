@@ -14,10 +14,18 @@ Comment.init(
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      // new code
+      references: {
+        model: 'user',
+        key: 'id'
+      }
     },
     blog_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        // new code
+        references: 'blog',
+        key: 'id'
       },
     content: {
       type: DataTypes.TEXT,
