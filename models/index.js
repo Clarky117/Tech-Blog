@@ -5,8 +5,23 @@ const Comment = require("./Comment");
 // define relationships
 
 // user
-User.hasMany(Post, {
+User.hasMany(Blog, {
     foreignKey: 'user_id'
+});
+
+Blog.belongsTo(User, {
+    foreignKey: 'user_id',
+    onDelete: 'cascade'
+});
+
+Comment.belongsTo(User, {
+    foreignKey: 'user_id',
+    onDelete: 'cascade'
+});
+
+Comment.belongsTo(Blog, {
+    foreignKey: 'blog_id',
+    onDelete: 'cascade'
 });
 
 User.hasMany(Comment, {
@@ -14,24 +29,7 @@ User.hasMany(Comment, {
     onDelete: 'cascade'
 });
 
-// blog
-Blog.belongsTo(User, {
-    foreignKey: 'user_id',
-    onDelete: 'cascade'
-});
-
 Blog.hasMany(Comment, {
-    foreignKey: 'blog_id',
-    onDelete: 'cascade'
-});
-
-// comment
-Comment.belongsTo(User, {
-    foreignKey: 'user_id',
-    onDelete: 'cascade'
-});
-
-Comment.belongsTo(Blog, {
     foreignKey: 'blog_id',
     onDelete: 'cascade'
 });

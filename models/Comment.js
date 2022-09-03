@@ -1,22 +1,28 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+const Blog = require('./Blog');
+const User = require('./User');
 
 class Comment extends Model {}
 
 Comment.init(
   {
-    // id: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false,
-    //   primaryKey: true,
-    //   autoIncrement: true,
-    // },
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    content: {
+      type: DataTypes.TEXT, // string or text
+      allowNull: false,
+    },
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       // new code
       references: {
-        model: 'user',
+        model: User,
         key: 'id'
       }
     },
@@ -24,13 +30,11 @@ Comment.init(
         type: DataTypes.INTEGER,
         allowNull: false,
         // new code
-        references: 'blog',
-        key: 'id'
+        references: {
+          model: Blog,
+          key: 'id'
+        }
       },
-    content: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
   },
   {
     sequelize,

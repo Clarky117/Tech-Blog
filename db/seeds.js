@@ -1,3 +1,5 @@
+// 
+
 const sequelize = require("../config/connection");
 const { faker } = require('@faker-js/faker');
 const User = require("../models/User");
